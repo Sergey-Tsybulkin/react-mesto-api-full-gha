@@ -8,6 +8,7 @@ const routeSignup = require('./routes/signup');
 const routeSignin = require('./routes/signin');
 const auth = require('./middlewares/auth');
 const routeUsers = require('./routes/users');
+const { logger, requestLoggingMiddleware } = require('./middlewares/logger');
 const routeCards = require('./routes/cards');
 
 const NotFoundError = require('./errors/NotFoundError');
@@ -27,6 +28,8 @@ mongoose
   });
 
 const app = express();
+
+app.use(requestLoggingMiddleware);
 
 app.use(helmet());
 
@@ -48,3 +51,7 @@ app.use(errors());
 app.use(errorHandler);
 
 app.listen(PORT);
+
+app.listen(PORT, () => {
+  logger.info(`Server running on port ${PORT}`);
+});
