@@ -1,0 +1,28 @@
+.profile__info {
+	display: grid;
+	grid-template-areas: "title button"
+		"subtitle subtitle";
+	margin-right: auto;
+	align-items: baseline;
+	row-gap: 8px;
+	column-gap: 19px;
+	padding-left: 30px;
+	max-width: 336px;
+}
+
+@media (max-width: 780px) {
+	.profile__info {
+		max-width: 282px;
+		padding-left: 18px;
+	}
+}
+
+@media (max-width: 695px) {
+	.profile__info {
+		margin: 0 auto;
+		row-gap: 7px;
+		column-gap: 10px;
+		padding: 26px 0 32px;
+		text-align: center;
+	}
+}

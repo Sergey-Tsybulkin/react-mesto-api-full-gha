@@ -1,0 +1,17 @@
+.popup__input-error {
+  max-width: 357px;
+  word-wrap: break-word;
+  padding-top: 4px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  min-height: 30px;
+  /* color: red;
+  box-shadow: inset 0 1px 0 0 rgb(255 0 0); */
+}
+
+@media (max-width: 701px) {
+  .popup__input-error {
+    max-width: 238px;
+  }
+}

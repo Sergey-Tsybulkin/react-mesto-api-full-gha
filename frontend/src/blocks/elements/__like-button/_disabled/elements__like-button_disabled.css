@@ -1,0 +1,4 @@
+.elements__like-button_disabled {
+  background: url(../../../../images/like-active.svg) center no-repeat;
+  opacity: 1;
+}

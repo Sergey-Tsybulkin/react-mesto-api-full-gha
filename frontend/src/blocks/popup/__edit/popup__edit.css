@@ -1,0 +1,14 @@
+.popup__edit {
+	background-color: #fff;
+	color: #000;
+	padding: 34px 36px 37px;
+	display: flex;
+	flex-direction: column;
+	border-radius: 10px;
+}
+
+@media (max-width:1100px) {
+	.popup__edit {
+		padding: 25px 22px;
+	}
+}
