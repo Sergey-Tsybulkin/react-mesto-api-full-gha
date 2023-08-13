@@ -21,11 +21,19 @@ const app = express();
 
 app.use(requestLoggingMiddleware); // Adding middleware for request logging
 
-app.use(cors); // Using CORS
+
 
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(cors); // Using CORS
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('The server is about to crash');
+  }, 0);
+});
 
 app.use(limiter);
 app.use(rootRouter);
