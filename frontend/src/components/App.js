@@ -25,7 +25,6 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
   const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState(false);
-  // const [isLoading, setIsLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState({}); // data profile
   const [cards, setCards] = useState([]);
   const [profileEmail, setProfileEmail] = useState("");
@@ -52,7 +51,10 @@ function App() {
           }
         })
         .catch((err) => {
-          console.log(err);
+          if (err.status === 401) {
+            console.log("401 — Token not transferred or transferred in the wrong format");
+          }
+          console.log("401 — The passed token is invalid");
         });
     }
   }, [history]);
