@@ -73,7 +73,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://api.sereg1ns.nomoreparties.co",
+  baseUrl: "http://api.sereg1ns.nomoreparties.co",
   headers: {
     authorization: "e5cf9ce5-83ea-4919-bb56-96280137220a",
     "Content-Type": "application/json",
