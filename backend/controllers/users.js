@@ -6,8 +6,10 @@ const NotFoundError = require('../errors/NotFoundError');
 const BadRequestError = require('../errors/BadRequestError');
 
 module.exports.getUsers = (_, res, next) => {
-  User.find({})
+  User
+    .find({})
     .then((users) => res.send({ users }))
+    .then((users) => res.send(users))
     .catch(next);
 };
 
@@ -21,29 +23,29 @@ const findUserById = (id) => User.findById(id).then((user) => {
 module.exports.getUserId = (req, res, next) => {
   const { id } = req.params;
   findUserById(id)
-  .then((user) => res.send({ user }))
-  .catch((err) => {
-    if (err instanceof CastError) {
-      next(
-        new BadRequestError(
-          'Incorrect data passed when searching for a user',
-        ),
-      );
-    } else {
-      next(err);
-    }
-  });
+    .then((user) => res.send({ user }))
+    .then((user) => res.send(user))
+    .catch((err) => {
+      if (err instanceof CastError) {
+        next(
+          new BadRequestError(
+            'Incorrect data passed when searching for a user',
+          ),
+        );
+      } else {
+        next(err);
+      }
+    });
 };
 
 module.exports.getCurrentUserInfo = (req, res, next) => {
   const { userId } = req.user;
   findUserById(userId)
     .then((user) => res.send({ user }))
+    .then((user) => res.send(user))
     .catch(next);
 };
 
-
-// Function to update user data
 const updateUserProfileData = (userId, data) => User.findByIdAndUpdate(userId, data, {
   new: true,
   runValidators: true,
@@ -59,20 +61,22 @@ const updateUserProfileData = (userId, data) => User.findByIdAndUpdate(userId, d
   throw err;
 });
 
-// Updating User Data
 module.exports.updateUserProfile = (req, res, next) => {
   const { name, about } = req.body;
   const { userId } = req.user;
+
   updateUserProfileData(userId, { name, about })
     .then((user) => res.send({ user }))
+    .then((user) => res.send(user))
     .catch((err) => next(err));
 };
 
-// User avatar update
 module.exports.updateUserAvatar = (req, res, next) => {
   const { avatar } = req.body;
   const { userId } = req.user;
+
   updateUserProfileData(userId, { avatar })
     .then((user) => res.send({ user }))
+    .then((user) => res.send(user))
     .catch((err) => next(err));
 };
