@@ -1,5 +1,5 @@
 import getResponseData from "./utils";
-export const BASE_URL = "https://auth.nomoreparties.co";
+export const BASE_URL = "https://api.sereg1ns.nomoreparties.co";
 
 
 export const register = (email, password) => {
