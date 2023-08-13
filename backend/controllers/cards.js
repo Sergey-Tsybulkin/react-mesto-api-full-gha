@@ -1,3 +1,5 @@
+const { ValidationError } = require('mongoose').Error;
+const { CastError } = require('mongoose').Error;
 const Card = require('../models/card');
 
 const ForbiddenError = require('../errors/ForbiddenError');
@@ -5,7 +7,7 @@ const NotFoundError = require('../errors/NotFoundError');
 const BadRequestError = require('../errors/BadRequestError');
 
 module.exports.getCards = (req, res, next) => {
-  Card.find({})
+  Card
     .find({})
     .populate(['owner', 'likes'])
     .then((cards) => res.send({ data: cards }))
@@ -19,8 +21,12 @@ module.exports.createCard = (req, res, next) => {
     .create({ name, link, owner: userId })
     .then((card) => res.status(201).send({ data: card }))
     .catch((err) => {
-      if (err.name === 'ValidationError') {
-        next(new BadRequestError('Posting wrong data when create card'));
+      if (err instanceof ValidationError) {
+        next(
+          new BadRequestError(
+            'Incorrect data was sent when creating a card',
+          ),
+        );
       } else {
         next(err);
       }
@@ -73,8 +79,12 @@ module.exports.likeCard = (req, res, next) => {
       throw new NotFoundError('Card with specified id not found');
     })
     .catch((err) => {
-      if (err.name === 'ValidationError' || err.name === 'CastError') {
-        next(new BadRequestError('Incorrect data sent when adding a like to a card'));
+      if (err instanceof CastError) {
+        next(
+          new BadRequestError(
+            'Incorrect data sent when adding a like to a card',
+          ),
+        );
       } else {
         next(err);
       }
@@ -101,8 +111,12 @@ module.exports.deleteLikeCard = (req, res, next) => {
       throw new NotFoundError('Data for the specified id was not found');
     })
     .catch((err) => {
-      if (err.name === 'ValidationError' || err.name === 'CastError') {
-        next(new BadRequestError('Incorrect data sent when unliking a card'));
+      if (err instanceof CastError) {
+        next(
+          new BadRequestError(
+            'Incorrect data sent when unliking a card',
+          ),
+        );
       } else {
         next(err);
       }

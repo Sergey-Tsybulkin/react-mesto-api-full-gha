@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const { Schema } = mongoose;
-const { REGEX } = require('../utils/constants');
-
+const config = require('../config');
 const userSchema = new Schema(
   {
     email: {
@@ -37,7 +36,7 @@ const userSchema = new Schema(
       default:
         'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
       validate: {
-        validator: (url) => REGEX.test(url),
+        validator: (url) => config.REGEX.test(url),
         message: 'Необходим URL',
       },
     },
@@ -51,11 +50,13 @@ const userSchema = new Schema(
           .then((user) => {
             if (user) {
               return bcrypt.compare(password, user.password).then((matched) => {
-                if (matched) return user;
-                return Promise.reject();
+                if (matched) {
+                  return user;
+                }
+                throw new Error('Wrong email or password');
               });
             }
-            return Promise.reject();
+            throw new Error('Wrong email or password');
           });
       },
     },

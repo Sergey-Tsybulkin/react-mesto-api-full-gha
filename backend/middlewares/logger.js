@@ -1,6 +1,7 @@
 const winston = require('winston');
 const expressWinston = require('express-winston');
 
+//creating logger
 const logger = winston.createLogger({
   transports: [
     new winston.transports.Console(),
@@ -12,6 +13,7 @@ const logger = winston.createLogger({
   ),
 });
 
+// middleware for loggin
 const requestLoggingMiddleware = expressWinston.logger({
   transports: [
     new winston.transports.File({ filename: 'request.log' }),
