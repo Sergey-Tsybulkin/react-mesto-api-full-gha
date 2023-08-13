@@ -5,9 +5,7 @@ const helmet = require('helmet');
 const { errors } = require('celebrate');
 const limiter = require('./middlewares/rateLimiter');
 const errorHandler = require('./middlewares/errorHandler');
-
-const cors = require('cors');
-
+const cors = require('./middlewares/cors');
 const config = require('./config');
 
 
@@ -27,7 +25,7 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors()); // Using CORS
+app.use(cors); // Using CORS
 
 app.get('/crash-test', () => {
   setTimeout(() => {
