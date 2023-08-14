@@ -73,7 +73,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "http://api.sereg1ns.nomoreparties.co",
+  baseUrl: "https://api.sereg1ns.nomoreparties.co",
   headers: {
     "Content-Type": "application/json",
     authorization: `Bearer ${localStorage.getItem("jwt")}`,
