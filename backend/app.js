@@ -27,13 +27,15 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cors); // Using CORS
 
+app.use(limiter);
+
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('The server is about to crash');
   }, 0);
 });
 
-app.use(limiter);
+
 app.use(rootRouter);
 
 app.use(errors());
