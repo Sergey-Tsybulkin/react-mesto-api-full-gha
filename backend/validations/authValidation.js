@@ -10,6 +10,7 @@ const signUpValidation = celebrate({
     avatar: Joi.string().pattern(config.REGEX),
   }),
 });
+
 const signInValidation = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
