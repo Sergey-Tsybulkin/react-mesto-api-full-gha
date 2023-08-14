@@ -4,7 +4,7 @@ const config = require('../config');
 const createCardValidation = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
-    link: Joi.string().required().pattern(config.URL_REGEX),
+    link: Joi.string().required().pattern(config.REGEX),
   }),
 });
 

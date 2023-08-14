@@ -7,7 +7,7 @@ const signUpValidation = celebrate({
     password: Joi.string().required().min(6),
     name: Joi.string().min(2).max(30),
     about: Joi.string().min(2).max(30),
-    avatar: Joi.string().pattern(config.URL_REGEX),
+    avatar: Joi.string().pattern(config.REGEX),
   }),
 });
 const signInValidation = celebrate({
