@@ -54,6 +54,6 @@ module.exports.loginUser = (req, res, next) => {
       return res.send({ token });
     })
     .catch(() => {
-    next(new UnauthorizedError('Wrong email or password'));
+      next(new UnauthorizedError('Wrong email or password'));
     });
 };
