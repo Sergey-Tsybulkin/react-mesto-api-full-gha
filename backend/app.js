@@ -9,7 +9,7 @@ const cors = require('./middlewares/cors');
 const config = require('./config');
 
 
-const { logger, requestLoggingMiddleware } = require('./middlewares/logger');
+const { requestLoggerMiddlewere, errorLoggerMiddlewere } = require('./middlewares/logger');
 const rootRouter = require('./routes');
 
 mongoose.set('strictQuery', true);
@@ -17,7 +17,7 @@ mongoose.connect(config.DB_URL);
 
 const app = express();
 
-app.use(requestLoggingMiddleware); // Adding middleware for request logging
+app.use(requestLoggerMiddlewere); // Adding middleware for request logging
 
 
 
@@ -37,10 +37,9 @@ app.get('/crash-test', () => {
 
 
 app.use(rootRouter);
+app.use(errorLoggerMiddlewere);
 
 app.use(errors());
 app.use(errorHandler);
 
-app.listen(config.PORT, () => {
-  logger.info(`Server running on port ${config.PORT}`);
-});
+app.listen(config.PORT);
