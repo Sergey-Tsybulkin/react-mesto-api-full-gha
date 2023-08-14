@@ -2,7 +2,7 @@ const allowedCors = [
   'https://sereg1ns.nomoreparties.co',
   'http://sereg1ns.nomoreparties.co',
   'https://127.0.0.1:3000',
-  'http://127.0.0.1:3001',
+  'http://127.0.0.1:3000',
 ];
 
 module.exports = (req, res, next) => {
