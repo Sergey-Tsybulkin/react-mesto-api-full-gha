@@ -2,8 +2,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
+const config = require('../config');
 // const someSecretKey = '$2b$10$GWl4u9KstqG57OdgUooKUO1o9hkH9lvXFMOAqpF04j.Pg9H5M9DRS';
-
 
 const UnauthorizedError = require('../errors/UnauthorizedError');
 const ConflictError = require('../errors/ConflictError');
@@ -52,8 +52,8 @@ module.exports.loginUser = (req, res, next) => {
     .then(({ _id: userId }) => {
       const token = jwt.sign({ userId }, config.someSecretKey, { expiresIn: '7d' });
       return res.send({ token });
-      })
-      .catch(() => {
-        next(new UnauthorizedError('Wrong email or password'));
     })
+    .catch(() => {
+    next(new UnauthorizedError('Wrong email or password'));
+    });
 };

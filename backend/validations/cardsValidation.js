@@ -19,8 +19,6 @@ const deleteCardValidation = celebrate({
   }),
 });
 
-
-
 const deleteLikeCardValidation = celebrate({
   params: Joi.object().keys({
     cardId: Joi.string().length(24).hex().required(),

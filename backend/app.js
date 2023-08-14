@@ -8,7 +8,6 @@ const errorHandler = require('./middlewares/errorHandler');
 const cors = require('./middlewares/cors');
 const config = require('./config');
 
-
 const { requestLoggerMiddlewere, errorLoggerMiddlewere } = require('./middlewares/logger');
 const rootRouter = require('./routes');
 
@@ -18,8 +17,6 @@ mongoose.connect(config.DB_URL);
 const app = express();
 
 app.use(requestLoggerMiddlewere); // Adding middleware for request logging
-
-
 
 app.use(helmet());
 app.use(express.json());
@@ -34,7 +31,6 @@ app.get('/crash-test', () => {
     throw new Error('The server is about to crash');
   }, 0);
 });
-
 
 app.use(rootRouter);
 app.use(errorLoggerMiddlewere);

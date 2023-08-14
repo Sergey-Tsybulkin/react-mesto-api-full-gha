@@ -1,8 +1,6 @@
 const { celebrate, Joi } = require('celebrate');
 const config = require('../config');
 
-
-
 const updateUserAvatarValidation = celebrate({
   body: Joi.object().keys({
     avatar: Joi.string().pattern(config.URL_REGEX).required(),

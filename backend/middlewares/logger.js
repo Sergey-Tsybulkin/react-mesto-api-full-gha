@@ -1,7 +1,7 @@
 const expressWinston = require('express-winston');
 const winston = require('winston');
 
-//creating logger
+// creating logger
 const errorLoggerMiddlewere = expressWinston.errorLogger({
   transports: [
     new winston.transports.File({ filename: 'error.log' }),
