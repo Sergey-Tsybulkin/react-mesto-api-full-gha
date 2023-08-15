@@ -12,7 +12,6 @@ function Login({ onAuthorize }) {
     setPassword(e.target.value);
   }
 
-
   function handleSubmit(e) {
     e.preventDefault();
     onAuthorize(email, password);

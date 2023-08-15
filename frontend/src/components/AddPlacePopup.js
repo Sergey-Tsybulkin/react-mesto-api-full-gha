@@ -16,7 +16,6 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, onLoading }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
     // sent values of components to external
     onAddPlace({
       name: placeName,
