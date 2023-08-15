@@ -3,7 +3,7 @@ export const BASE_URL = "https://api.sereg1ns.nomoreparties.co";
 
 
 export const register = (email, password) => {
-  return fetch(`${BASE_URL}/sign-up`, {
+  return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
