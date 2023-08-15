@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 function Register({ onRegister }) {
@@ -13,10 +13,12 @@ function Register({ onRegister }) {
     setPassword(e.target.value);
   }
 
+
   function handleSubmit(e) {
     e.preventDefault();
     onRegister(email, password);
   }
+
   return (
     <div className="auth">
       <div className="auth__container">

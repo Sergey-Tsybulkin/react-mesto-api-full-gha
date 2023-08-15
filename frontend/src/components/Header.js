@@ -5,6 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 
 function Header({ userEmail, onSignOut }) {
   const location = useLocation();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   function handleToggleMenu() {
@@ -57,6 +58,10 @@ function Header({ userEmail, onSignOut }) {
           </>
         )}
       </div>
+
+
+
+{}
     </header>
   );
 }

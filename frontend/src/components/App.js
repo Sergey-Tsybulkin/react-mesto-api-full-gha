@@ -16,7 +16,6 @@ import Register from "./Register";
 import InfoTooltip from "./InfoTooltip";
 import * as auth from "../utils/auth";
 
-
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isSuccessInfoTooltipStatus, setIsSuccess] = useState(false);
@@ -47,9 +46,9 @@ function App() {
         .then((res) => {
           if (res) {
             setIsLoggedIn(true);
+            history.push("/");
             setProfileEmail(res.data.email);
           }
-          history.push("/");
         })
         .catch((err) => {
           if (err.status === 401) {
@@ -58,7 +57,7 @@ function App() {
           console.log("401 — The passed token is invalid");
         });
     }
-  });
+  }, [history]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -192,7 +191,7 @@ function App() {
         if (res) {
           setIsSuccess(true);
           setIsInfoTooltipPopupOpen(true);
-          history.push("/signin");
+          history.push("/sign-in");
         }
       })
       .catch((err) => {
@@ -210,7 +209,7 @@ function App() {
         if (res) {
           setIsLoggedIn(true);
           localStorage.setItem("jwt", res.token);
-          history.push("./");
+          history.push("/");
           setProfileEmail(email);
         }
       })
@@ -225,7 +224,7 @@ function App() {
   const handleSignOut = () => {
     setIsLoggedIn(false);
     localStorage.removeItem("jwt");
-    history.push("/signin");
+    history.push("/sign-in");
   };
 
   return (
