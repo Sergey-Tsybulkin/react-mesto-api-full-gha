@@ -30,6 +30,7 @@ function App() {
   const [profileEmail, setProfileEmail] = useState("");
   const [removedCardId, setRemovedCardId] = useState("");
   const history = useHistory();
+  const [isAddPhoto, setIsAddPhoto] = useState(false);
 
   const [isLoadingEditProfilePopup, setIsLoadingEditProfilePopup] = useState(false);
   const [isLoadingEditAvatarPopup, setIsLoadingEditAvatarPopup] = useState(false);
@@ -39,53 +40,38 @@ function App() {
 
 
   useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
+    const jwt = localStorage.getItem('jwt');
     if (jwt) {
-      auth
-        .checkToken(jwt)
-        .then((res) => {
+      auth.getContent(jwt)
+        .then(res => {
           if (res) {
-            setIsLoggedIn(true);
-            history.push("/");
-            setProfileEmail(res.data.email);
+            setIsLoggedIn(true)
+            setProfileEmail(res.email)
           }
+          history.push('/')
         })
-        .catch((err) => {
-          if (err.status === 401) {
-            console.log("401 — Token not transferred or transferred in the wrong format");
-          }
-          console.log("401 — The passed token is invalid");
-        });
+        .catch(err => {
+          console.log(err);
+        })
     }
-  }, [history]);
+  });
 
   useEffect(() => {
     if (isLoggedIn) {
-      api
-        .getProfile()
-        .then((profileInfo) => {
-          setCurrentUser(profileInfo);
-        })
+      api.getProfile().then((profileInfo) => {
+        setCurrentUser(profileInfo)
+      })
         .catch((err) => {
           console.log(err);
-        });
-    }
-  }, [isLoggedIn]);
-
-
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      api
-        .getInitialCards()
-        .then((cardsData) => {
-          setCards(cardsData);
         })
+      api.getInitialCards().then((cardsData) => {
+        setCards(cardsData)
+      })
         .catch((err) => {
           console.log(err);
-        });
-    }
-  }, [isLoggedIn]);
+        })
+      }
+  }, [isLoggedIn, isAddPhoto]);
 
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
@@ -130,19 +116,16 @@ function App() {
 
   function handleCardLike(card) {
     // check for existing like
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
-
+    const isLiked = card.likes.some(i => i === currentUser._id);
+    console.log(card.likes)
     // send for API and get renewed card data
     api
-      .changeLikeCardStatus(card._id, !isLiked)
-      .then((newCard) => {
-        setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
-        );
-      })
+      .changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+      setCards((state) => state.map((c) => c._id === card._id ? newCard : c))
+    })
       .catch((err) => {
         console.log(err);
-      });
+      })
   }
 
   const handleCardDeleteClick = (cardId) => {
@@ -169,17 +152,18 @@ function App() {
 
   function handleAddPlaceSubmit(data) {
     setIsLoadingAddPlacePopup(true);
+    setIsAddPhoto(true);
     api
-      .addCard(data)
-      .then((newCard) => {
-        setCards([newCard, ...cards]);
-        closeAllPopups();
+      .postCard(data).then((newCard) => {
+      setCards([newCard, ...cards])
+      closeAllPopups();
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
         setIsLoadingAddPlacePopup(false);
+        setIsAddPhoto(false);
       });
   }
 
