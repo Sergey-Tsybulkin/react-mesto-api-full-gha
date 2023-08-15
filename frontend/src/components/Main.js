@@ -51,6 +51,8 @@ function Main({
         ></button>
       </section>
 
+{/* /////////////// */}
+
       <section className="center">
         <ul className="elements">
           {cards.map((card) => (

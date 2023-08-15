@@ -154,7 +154,7 @@ function App() {
     setIsLoadingAddPlacePopup(true);
     setIsAddPhoto(true);
     api
-      .postCard(data).then((newCard) => {
+      .addCard(data).then((newCard) => {
       setCards([newCard, ...cards])
       closeAllPopups();
       })

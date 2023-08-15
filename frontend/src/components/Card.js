@@ -1,5 +1,4 @@
 import React from "react";
-
 import CurrentUserContext from "../contexts/CurrentUserContext";
 
 function Card({ card, onCardClick, onCardLike, onCardDelete }) {
@@ -9,7 +8,7 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
     isOwn ? "elements__trash_show" : "elements__trash_hide"
   }`;
 
-  const isLiked = card.likes.some((i) => i._id === currentUser._id);
+  const isLiked = card.likes.some(i => i === currentUser._id);
   const cardLikeButtonClassName = `elements__like-button ${
     isLiked ? "elements__like-button_disabled" : ""
   }`;

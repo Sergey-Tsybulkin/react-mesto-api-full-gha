@@ -1,11 +1,11 @@
-// import React from "react";
-import React, { useState } from "react";
-import logo from "../images/logo.svg";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState } from 'react';
+import logo from '../images/logo.svg';
+import { Link, useLocation } from 'react-router-dom';
 
 function Header({ userEmail, onSignOut }) {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   function handleToggleMenu() {
     setIsMenuOpen(!isMenuOpen);
   }
