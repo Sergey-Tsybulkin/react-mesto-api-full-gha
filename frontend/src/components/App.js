@@ -191,7 +191,7 @@ function App() {
         if (res) {
           setIsSuccess(true);
           setIsInfoTooltipPopupOpen(true);
-          history.push("/sign-in");
+          history.push("/signin");
         }
       })
       .catch((err) => {
@@ -224,7 +224,7 @@ function App() {
   const handleSignOut = () => {
     setIsLoggedIn(false);
     localStorage.removeItem("jwt");
-    history.push("/sign-in");
+    history.push("/signin");
   };
 
   return (
@@ -233,11 +233,11 @@ function App() {
         <div className="page center">
           <Header onSignOut={handleSignOut} userEmail={profileEmail} />
           <Switch>
-            <Route path="/sign-in">
+            <Route path="/signin">
               <Login onAuthorize={handleAuthorize} />
             </Route>
 
-            <Route path="/sign-up">
+            <Route path="/signup">
               <Register onRegister={handleRegister} />
             </Route>
 

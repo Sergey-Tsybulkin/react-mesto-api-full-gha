@@ -5,18 +5,14 @@ import { Link, useLocation } from "react-router-dom";
 
 function Header({ userEmail, onSignOut }) {
   const location = useLocation();
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   function handleToggleMenu() {
     setIsMenuOpen(!isMenuOpen);
   }
-
   function handleSignOut() {
     setIsMenuOpen(false);
     onSignOut();
   }
-
   return (
     <header className="header center">
       <div
@@ -31,13 +27,13 @@ function Header({ userEmail, onSignOut }) {
       </div>
       <div className="header__container">
         <img className="header__logo" src={logo} alt="логотип" />
-        {location.pathname === "/sign-in" && (
-          <Link to="/sign-up" className="header__link">
+        {location.pathname === "/signin" && (
+          <Link to="/signup" className="header__link">
             Регистрация
           </Link>
         )}
-        {location.pathname === "/sign-up" && (
-          <Link to="/sign-in" className="header__link">
+        {location.pathname === "/signup" && (
+          <Link to="/signin" className="header__link">
             Войти
           </Link>
         )}
@@ -58,10 +54,6 @@ function Header({ userEmail, onSignOut }) {
           </>
         )}
       </div>
-
-
-
-{}
     </header>
   );
 }

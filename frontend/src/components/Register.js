@@ -13,7 +13,6 @@ function Register({ onRegister }) {
     setPassword(e.target.value);
   }
 
-
   function handleSubmit(e) {
     e.preventDefault();
     onRegister(email, password);
