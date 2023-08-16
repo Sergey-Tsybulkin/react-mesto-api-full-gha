@@ -50,12 +50,9 @@ function Main({
           }}
         ></button>
       </section>
-
-{/* /////////////// */}
-
       <section className="center">
         <ul className="elements">
-          {cards.map((card) => (
+        {cards.slice(0).reverse().map((card) => (
             <Card
               key={card._id}
               card={card}
