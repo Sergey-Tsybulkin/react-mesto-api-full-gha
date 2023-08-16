@@ -53,15 +53,18 @@ function Main({
 
       <section className="center">
         <ul className="elements">
-        {cards.slice(0).reverse().map((card) => (
-            <Card
-              key={card._id}
-              card={card}
-              onCardClick={onCardClick}
-              onCardLike={onCardLike}
-              onCardDelete={onCardDelete}
-            />
-          ))}
+          {cards
+            .slice(0)
+            .reverse()
+            .map((card) => (
+              <Card
+                key={card._id}
+                card={card}
+                onCardClick={onCardClick}
+                onCardLike={onCardLike}
+                onCardDelete={onCardDelete}
+              />
+            ))}
         </ul>
       </section>
     </main>

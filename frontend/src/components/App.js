@@ -31,6 +31,7 @@ function App() {
   const [removedCardId, setRemovedCardId] = useState("");
   const history = useHistory();
   const [isAddPhoto, setIsAddPhoto] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
 
   const [isLoadingEditProfilePopup, setIsLoadingEditProfilePopup] = useState(false);
   const [isLoadingEditAvatarPopup, setIsLoadingEditAvatarPopup] = useState(false);

@@ -10,7 +10,8 @@ module.exports.getCards = (req, res, next) => {
   Card
     .find({})
     .populate(['owner', 'likes'])
-    .then((cards) => res.send({ data: cards }))
+    // .then((cards) => res.send({ data: cards }))
+    .then((cards) => res.send(cards))
     .catch(next);
 };
 
@@ -19,7 +20,8 @@ module.exports.createCard = (req, res, next) => {
   const { userId } = req.user;
   Card
     .create({ name, link, owner: userId })
-    .then((card) => res.status(201).send({ data: card }))
+    // .then((card) => res.status(201).send({ data: card }))
+    .then((card) => res.status(201).send(card))
     .catch((err) => {
       if (err instanceof ValidationError) {
         next(
@@ -54,7 +56,8 @@ module.exports.deleteCard = (req, res, next) => {
       if (!deletedCard) {
         throw new NotFoundError('The card has already been deleted');
       }
-      res.send({ data: deletedCard });
+      // res.send({ data: deletedCard });
+      res.send(deletedCard);
     })
     .catch(next);
 };
@@ -75,7 +78,8 @@ module.exports.likeCard = (req, res, next) => {
       },
     )
     .then((card) => {
-      if (card) return res.send({ data: card });
+      // if (card) return res.send({ data: card });
+      if (card) return res.send(card);
       throw new NotFoundError('Card with specified id not found');
     })
     .catch((err) => {
@@ -107,7 +111,8 @@ module.exports.deleteLikeCard = (req, res, next) => {
       },
     )
     .then((card) => {
-      if (card) return res.send({ data: card });
+      // if (card) return res.send({ data: card });
+      if (card) return res.send(card);
       throw new NotFoundError('Data for the specified id was not found');
     })
     .catch((err) => {
