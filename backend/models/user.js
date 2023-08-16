@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs');
 const { Schema } = mongoose;
 const config = require('../config');
 
+const UnauthorizedError = require('../errors/UnauthorizedError');
+
 const userSchema = new Schema(
   {
     email: {
@@ -54,10 +56,10 @@ const userSchema = new Schema(
                 if (matched) {
                   return user;
                 }
-                throw new Error('Wrong email or password');
+                throw new UnauthorizedError('Wrong email or password');
               });
             }
-            throw new Error('Wrong email or password');
+            throw new UnauthorizedError('Wrong email or password');
           });
       },
     },

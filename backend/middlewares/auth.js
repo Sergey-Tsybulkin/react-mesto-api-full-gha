@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const config = require('../config');
 
-// const someSecretKey = '$2b$10$GWl4u9KstqG57OdgUooKUO1o9hkH9lvXFMOAqpF04j.Pg9H5M9DRS';
+// const SOME_SECRET_KEY = '$2b$10$GWl4u9KstqG57OdgUooKUO1o9hkH9lvXFMOAqpF04j.Pg9H5M9DRS';
 const UnauthorizedError = require('../errors/UnauthorizedError');
 
 module.exports = (req, _, next) => {
@@ -14,7 +14,7 @@ module.exports = (req, _, next) => {
   const token = authorization.replace(bearer, '');
   let payload;
   try {
-    payload = jwt.verify(token, config.someSecretKey);
+    payload = jwt.verify(token, config.SOME_SECRET_KEY);
   } catch (err) {
     return next(new UnauthorizedError(`${errorMsg}!`));
   }
