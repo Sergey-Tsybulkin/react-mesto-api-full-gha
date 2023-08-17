@@ -31,7 +31,8 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, onLoading }) {
         type="url"
         name="about"
         id="avatar-input"
-        className="popup__input popup__input_type_link"
+        // className="popup__input popup__input_type_link popup__input_type_error"
+        className={errors.avatar ? 'popup__input popup__input_type_link popup__input_type_error' : "popup__input popup__input_type_link"}
         placeholder="Ссылка на аватар"
         required
         value={enteredValues.avatar || ''}

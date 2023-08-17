@@ -31,7 +31,8 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, onLoading }) {
         type="text"
         name="name"
         id="heading-input"
-        className="popup__input popup__input_type_title"
+        className={errors.title ? ' popup__input popup__input_type_title form__input popup__input_type_error' : "popup__input popup__input_type_title"}
+
 ////////////////////
 ////////////////////
 
@@ -46,8 +47,10 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, onLoading }) {
         type="url"
         name="about"
         id="link-input"
-        className="popup__input popup__input_type_link"
+        // className="popup__input popup__input_type_link"
         ////////////////////////////////////////
+        className={errors.link ? 'popup__input popup__input_type_link popup__input_type_error' : "popup__input popup__input_type_link"}
+
         placeholder="Ссылка на картинку"
         required
         value={enteredValues.link || ''}
