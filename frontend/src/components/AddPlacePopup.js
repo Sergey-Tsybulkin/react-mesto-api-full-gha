@@ -29,7 +29,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, onLoading }) {
       isDisabled={!isFormValid}>
       <input
         type="text"
-        name="name"
+        name="title"
         id="heading-input"
         className={errors.title ? ' popup__input popup__input_type_title form__input popup__input_type_error' : "popup__input popup__input_type_title"}
 
@@ -45,7 +45,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, onLoading }) {
       <span className="popup__input-error heading-input-error">{errors.title}</span>
       <input
         type="url"
-        name="about"
+        name="link"
         id="link-input"
         // className="popup__input popup__input_type_link"
         ////////////////////////////////////////
