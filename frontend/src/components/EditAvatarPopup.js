@@ -35,7 +35,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, onLoading }) {
         className={errors.avatar ? 'popup__input popup__input_type_link popup__input_type_error' : "popup__input popup__input_type_link"}
         placeholder="Ссылка на аватар"
         required
-        value={enteredValues.avatar || ''}
+        value={enteredValues.avatar}
         onChange={handleChange} />
       <span className="popup__input-error avatar-input-error">{errors.avatar}</span>
     </PopupWithForm>
